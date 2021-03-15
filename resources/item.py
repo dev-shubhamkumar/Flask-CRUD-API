@@ -3,11 +3,7 @@ from flask_jwt import jwt_required
 from models.item import ItemModel
 
 
-
-
-
 class Item(Resource):
-
 
     ### This is how we get very much defined parameters from api request and remove every 
     ### non-required items 
@@ -25,16 +21,13 @@ class Item(Resource):
     )
     ### Request ends
     
-
     @jwt_required()
     def get(self, name):
         item = ItemModel.find_by_name(name)
         if item:
             return item.json()
         return {'message': 'Item not found'}, 404
-    
 
-    
     def post(self, name):
         if ItemModel.find_by_name(name):
             return {'message': "An item with name '{}' already exists.".format(name)}, 400  # User problem (wrong request)
@@ -50,15 +43,12 @@ class Item(Resource):
 
         return item.json(), 201
 
-    
-
     def delete(self, name):
         item = ItemModel.find_by_name(name)
         if item:
             item.delete_from_db()
         
         return {'message': 'Item deleted'}
-    
 
     def put(self, name):
         data = Item.parser.parse_args()
@@ -72,15 +62,11 @@ class Item(Resource):
         
         item.save_to_db()
         return item.json()
-    
-
-
-
 
 
 class ItemList(Resource):
-    def get(self):
 
+    def get(self):
         # connection = sqlite3.connect('data.db')
         # cursor = connection.cursor()
         # query = "SELECT * FROM items"

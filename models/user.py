@@ -3,6 +3,7 @@ from db import db
 
 
 class UserModel(db.Model):
+
     __tablename__= 'users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -14,7 +15,6 @@ class UserModel(db.Model):
         self.username = username
         self.password = password
     
-
     @classmethod
     def find_by_username(cls, username):
         # connection = sqlite3.connect('data.db')
@@ -33,8 +33,6 @@ class UserModel(db.Model):
         # return user
         return cls.query.filter_by(username=username).first()
     
-
-
     @classmethod
     def find_by_id(cls, _id):
         # connection = sqlite3.connect('data.db')
@@ -53,9 +51,6 @@ class UserModel(db.Model):
         # return user
         return cls.query.filter_by(id=id)
     
-
     def save_to_db(self):
         db.session.add(self)
         db.session.commit()
-    
-

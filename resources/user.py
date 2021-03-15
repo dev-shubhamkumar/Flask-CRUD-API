@@ -3,7 +3,6 @@ from flask_restful import Resource, reqparse
 from models.user import UserModel
 
 
-
 class UserRegister(Resource):
 
     parser = reqparse.RequestParser()
@@ -18,7 +17,6 @@ class UserRegister(Resource):
         required=True,
         help="This field cannot be blank."
     )
-
 
     def post(self):
 

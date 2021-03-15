@@ -3,6 +3,7 @@ from models.store import StoreModel
 
 
 class Store(Resource):
+
     def get(self, name):
         store = StoreModel.find_by_name(name)
         if store:
@@ -28,7 +29,6 @@ class Store(Resource):
             return {'message': 'Store deleted.'}
         
         return {'message': 'Store did not exists.'}
-
 
 
 class StoreList(Resource):
